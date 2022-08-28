@@ -7,10 +7,14 @@ import { Login } from "../pages/login";
 
 export const LoggedOutRouter = () => {
   return (
+    
     <Router>
       <Routes>
         <Route path="/signup" element={<Signup />} />
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<Login />} />                                                                                                            +
+
+
+        
       </Routes>
     </Router>
   );

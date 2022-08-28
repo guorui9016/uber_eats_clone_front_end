@@ -6,8 +6,7 @@ import { LoggedInRouter } from "./routers/login-in-router";
 
 
 
-function App() {
-
+  function App() {
   return <LoggedOutRouter />
 }
 

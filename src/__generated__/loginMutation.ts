@@ -3,22 +3,23 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
+import { LoginInputDto } from "./globalTypes";
+
 // ====================================================
-// GraphQL mutation operation: PotatoMutation
+// GraphQL mutation operation: loginMutation
 // ====================================================
 
-export interface PotatoMutation_login {
-  __typename: "LoginOutputDto";
+export interface loginMutation_login {
+  // __typename: "LoginOutputDto";
   code: string;
   message: string;
   token: string | null;
 }
 
-export interface PotatoMutation {
-  login: PotatoMutation_login;
+export interface loginMutation {
+  login: loginMutation_login;
 }
 
-export interface PotatoMutationVariables {
-  email: string;
-  password: string;
+export interface loginMutationVariables {
+  login: LoginInputDto;
 }

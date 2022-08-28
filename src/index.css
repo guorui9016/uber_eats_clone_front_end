@@ -6,9 +6,6 @@
     @apply bg-gray-100 shadow-inner rounded-sm py-3 px-2 focus:outline-none focus:bg-white
 }
 
-.logbutton {
-    @apply py-3 px-2 text-center text-lg bg-gray-600 text-white rounded-md
-}
 
 .errortext{
     @apply text-red-500 font-medium
