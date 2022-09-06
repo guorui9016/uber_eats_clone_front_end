@@ -10,10 +10,10 @@ import { LoginInputDto } from "./globalTypes";
 // ====================================================
 
 export interface loginMutation_login {
-  // __typename: "LoginOutputDto";
+  __typename: "LoginOutputDto";
   code: string;
-  message: string;
   token: string | null;
+  message: string | null;
 }
 
 export interface loginMutation {

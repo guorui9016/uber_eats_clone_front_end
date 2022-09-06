@@ -3,11 +3,13 @@ import React from "react";
 interface IButtonProps {
   canClick: boolean;
   loading: boolean;
+  btnText: string;
 }
 
 export const Button: React.FC<IButtonProps> = ({
   canClick,
   loading,
+  btnText
 }) => (
   <button
     className={`py-3 px-2 mx-16 my-4 text-center text-lg text-white rounded-md ${
@@ -16,6 +18,6 @@ export const Button: React.FC<IButtonProps> = ({
         : " bg-gray-300 pointer-events-none"
     } `}
   > 
-    {loading ? "Loading..." : "Login"}
+    {loading ? "Loading..." : btnText}
   </button>
 );

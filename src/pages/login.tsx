@@ -98,7 +98,7 @@ export const Login = () => {
           {errors.password?.message && (
             <FormError errorMessage={errors.password.message} />
           )}
-          <Button canClick= {isValid} loading = {loading}/>
+          <Button canClick= {isValid} loading = {loading} btnText="Log In"/>
           {loginMutationResult?.login.code === "failed" && (
             <FormError errorMessage={loginMutationResult.login.message} />
           )} 
