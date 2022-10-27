@@ -11,7 +11,7 @@ import { LoginInputDto } from "../__generated__/globalTypes";
 import { Button } from "../components/button";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import { isLoggedInVar } from "../apollo";
+import { authToken, isLoggedInVar } from "../apollo";
 
 const LOGIN_MUTATION = gql`
   mutation loginMutation($login: LoginInputDto!) {
@@ -39,7 +39,12 @@ export const Login = () => {
 
   const onCompleted = (data: loginMutation) => {
     console.log(data);
-    isLoggedInVar(true) 
+    const {login:{code, token, message}} = data
+    if(code=='success' && token){
+      localStorage.setItem("token", token)
+      authToken(token)
+      isLoggedInVar(true) 
+    }
   };
 
   const [loginMutation, { loading, error, data: loginMutationResult }] =

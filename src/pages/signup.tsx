@@ -48,6 +48,7 @@ export const Signup = () => {
   const onCompleted = (data: createAccountMutation) => {
     const {createAccount:{code, message}} = data
     if(code==='success'){
+      alert('The account is created. Login right now')
       nav('/')
     }
     console.log(data)
