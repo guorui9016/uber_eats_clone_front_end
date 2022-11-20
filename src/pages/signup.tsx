@@ -51,7 +51,7 @@ export const Signup = () => {
       alert('The account is created. Login right now')
       nav('/')
     }
-    console.log(data)
+    console.log("signup -> onCompleted: " + data)
   }
 
   const [

@@ -11,7 +11,7 @@ import { LoginInputDto } from "../__generated__/globalTypes";
 import { Button } from "../components/button";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import { authToken, isLoggedInVar } from "../apollo";
+import { authTokenVar, isLoggedInVar } from "../apollo";
 
 const LOGIN_MUTATION = gql`
   mutation loginMutation($login: LoginInputDto!) {
@@ -38,11 +38,11 @@ export const Login = () => {
   } = useForm<ILoginForm>({mode:'onChange'});
 
   const onCompleted = (data: loginMutation) => {
-    console.log(data);
+    console.log("login -> login completed, data: " + data);
     const {login:{code, token, message}} = data
     if(code=='success' && token){
       localStorage.setItem("token", token)
-      authToken(token)
+      authTokenVar(token)
       isLoggedInVar(true) 
     }
   };
@@ -55,7 +55,7 @@ export const Login = () => {
   const onsubmit = () => {
     const { email, password } = getValues();
     if (!loading) {
-      console.log(getValues());
+      console.log("login -> getValues: "+getValues());
       loginMutation({
         variables: {
           login: {
@@ -67,8 +67,8 @@ export const Login = () => {
     }
   };
 
-  console.log(watch())
-  console.log(isValid)
+  console.log("login -> watch: " + watch())
+  console.log("login -> isValid: " + isValid)
   return (
     <div className=" h-screen flex items-center flex-col mt-10 lg:mt-28">
       <Helmet>
@@ -122,10 +122,9 @@ export const Login = () => {
           )}
         </form>
         <div>
-          New to Nuber?{" "}
-          <Link to="/signup" className=" text-lime-600 hover:underline">
-            {" "}
-            Sing Up
+          New to Nuber? 
+          <Link to="/signup" className=" text-lime-600 hover:underline ml-3">
+            Sign Up
           </Link>
         </div>
       </div>
