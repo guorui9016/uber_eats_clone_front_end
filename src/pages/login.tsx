@@ -1,17 +1,15 @@
-import { ApolloError, gql, useMutation } from "@apollo/client";
-import React from "react";
-import { FormProvider, useForm } from "react-hook-form";
+import { gql, useMutation } from "@apollo/client";
+import { useForm } from "react-hook-form";
 import { FormError } from "../components/form-error";
 import logo from "../images/uber-eats.svg";
 import {
   loginMutation,
   loginMutationVariables,
 } from "../__generated__/loginMutation";
-import { LoginInputDto } from "../__generated__/globalTypes";
 import { Button } from "../components/button";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import { authTokenVar, isLoggedInVar } from "../apollo";
+import { authTokenVar} from "../apollo";
 
 const LOGIN_MUTATION = gql`
   mutation loginMutation($login: LoginInputDto!) {
@@ -39,15 +37,15 @@ export const Login = () => {
 
   const onCompleted = (data: loginMutation) => {
     console.log("login -> login completed, data: " + data);
-    const {login:{code, token, message}} = data
-    if(code=='success' && token){
+    const {login:{code, token}} = data
+    if(code==='success' && token){
       localStorage.setItem("token", token)
       authTokenVar(token)
-      isLoggedInVar(true) 
+      // isLoggedInVar(true) 
     }
   };
 
-  const [loginMutation, { loading, error, data: loginMutationResult }] =
+  const [loginMutation, { loading, data: loginMutationResult }] =
     useMutation<loginMutation, loginMutationVariables>(LOGIN_MUTATION, {
       onCompleted,
     });
@@ -76,6 +74,7 @@ export const Login = () => {
       </Helmet>
       <img
         className=" w-full max-w-xs flex flex-col items-center mb-16"
+        alt="Nuber Eats - Uber Eats Clone"
         src={logo}
       />
       <div className=" bg-white w-full max-w-lg px-5 py-5 font-center font-serif text-lg rounded-lg">
@@ -85,6 +84,7 @@ export const Login = () => {
             {...register("email", {
               required: "Email is required!",
               pattern:
+                // eslint-disable-next-line
                 /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
             })}
             name="email"
